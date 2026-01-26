@@ -1,0 +1,26 @@
+name: BrowserStack Robot Tests
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install robotframework-appiumlibrary
+
+      - name: Run Robot Framework
+        env:
+          # GitHub bakal ambil dari 'Secrets' yang kamu setting nanti
+          BS_USER: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        run: |
+          robot fresh-test.robot

@@ -1,178 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.1 (Python 3.14.2 on darwin)" generated="2026-01-08T11:53:13.348184" rpa="false" schemaversion="5">
-<suite id="s1" name="Learning Robot Framework" source="/Users/karyn.yulius/Documents/GitHub/Learning Robot Framework">
-<suite id="s1-s1" name="Tests" source="/Users/karyn.yulius/Documents/GitHub/Learning Robot Framework/tests">
-<suite id="s1-s1-s1" name="Google Test" source="/Users/karyn.yulius/Documents/GitHub/Learning Robot Framework/tests/google_test.robot">
-<test id="s1-s1-s1-t1" name="Successful Registration Flow" line="10">
-<kw name="Open Training Site">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:14.865845" level="INFO">Opening browser 'chrome' to base url 'https://demoqa.com/automation-practice-form'.</msg>
-<arg>${URL}</arg>
-<arg>${BROWSER}</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2026-01-08T11:53:14.861666" elapsed="11.018875"/>
+<robot generator="Robot 7.4.1 (Python 3.14.2 on darwin)" generated="2026-01-26T10:28:18.989300" rpa="false" schemaversion="5">
+<suite id="s1" name="Fresh-Test" source="/Users/karyn.yulius/Documents/GitHub/Learning Robot Framework/fresh-test.robot">
+<test id="s1-t1" name="Launch And Login Flow" line="11">
+<kw name="Launch Setel App" type="SETUP">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-01-26T10:28:22.157808" level="INFO">&amp;{bstack_options} = { projectName=Setel New Start | buildName=Fresh-Scratch-Build | appiumVersion=2.4.1 | interactiveDebugging=True }</msg>
+<var>&amp;{bstack_options}</var>
+<arg>projectName=Setel New Start</arg>
+<arg>buildName=Fresh-Scratch-Build</arg>
+<arg>appiumVersion=2.4.1</arg>
+<arg>interactiveDebugging=${True}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-01-26T10:28:22.156723" elapsed="0.001150"/>
 </kw>
-<kw name="Maximize Browser Window" owner="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2026-01-08T11:53:25.883615" elapsed="0.454930"/>
+<kw name="Open Application" owner="AppiumLibrary">
+<kw name="Capture Page Screenshot" owner="AppiumLibrary">
+<msg time="2026-01-26T10:30:12.384427" level="FAIL">No application is open</msg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<status status="FAIL" start="2026-01-26T10:30:12.381842" elapsed="0.360994">No application is open</status>
 </kw>
-<kw name="Set Selenium Speed" owner="SeleniumLibrary">
-<arg>${DELAY}</arg>
-<doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" start="2026-01-08T11:53:26.339666" elapsed="0.002723"/>
+<msg time="2026-01-26T10:30:12.745308" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
+<msg time="2026-01-26T10:30:12.746257" level="INFO">/Users/karyn.yulius/Library/Python/3.14/lib/python/site-packages/appium/webdriver/appium_connection.py:65: UserWarning: Embedding username and password in URL could be insecure, use ClientConfig instead
+  return {**super().get_remote_connection_headers(parsed_url, keep_alive=keep_alive), **cls.extra_headers}</msg>
+<msg time="2026-01-26T10:30:12.746557" level="FAIL">ProtocolError: ('Connection broken: IncompleteRead(26 bytes read)', IncompleteRead(26 bytes read))</msg>
+<arg>${REMOTE_URL}</arg>
+<arg>automationName=UiAutomator2</arg>
+<arg>platformName=Android</arg>
+<arg>deviceName=Samsung Galaxy S23</arg>
+<arg>platformVersion=13.0</arg>
+<arg>app=${APP_ID}</arg>
+<arg>appPackage=com.setel.mobile.staging2</arg>
+<arg>appActivity=com.zapmobile.zap.splash.SplashActivity</arg>
+<arg>autoGrantPermissions=true</arg>
+<arg>newCommandTimeout=600</arg>
+<arg>bstack:options=${bstack_options}</arg>
+<doc>Opens a new application to the given Appium server.
+Capabilities of appium server, Android and iOS,
+Please check https://appium.io/docs/en/2.19/guides/caps/
+| *Option*            | *Man.* | *Description*     |
+| remote_url          | Yes    | Appium server url |
+| alias               | No     | alias             |</doc>
+<status status="FAIL" start="2026-01-26T10:28:22.158058" elapsed="110.595932">ProtocolError: ('Connection broken: IncompleteRead(26 bytes read)', IncompleteRead(26 bytes read))</status>
 </kw>
-<status status="PASS" start="2026-01-08T11:53:14.856325" elapsed="11.486645"/>
+<status status="FAIL" start="2026-01-26T10:28:22.155921" elapsed="110.598510">ProtocolError: ('Connection broken: IncompleteRead(26 bytes read)', IncompleteRead(26 bytes read))</status>
 </kw>
-<kw name="Fill Primary User Details">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:26.348522" level="INFO">Typing text 'Karyn' into text field 'id=firstName'.</msg>
-<arg>id=firstName</arg>
-<arg>${first}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-08T11:53:26.346749" elapsed="1.106953"/>
+<kw name="Close Application" owner="AppiumLibrary" type="TEARDOWN">
+<kw name="Capture Page Screenshot" owner="AppiumLibrary">
+<msg time="2026-01-26T10:30:12.755604" level="FAIL">No application is open</msg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<status status="FAIL" start="2026-01-26T10:30:12.755317" elapsed="0.001625">No application is open</status>
 </kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:27.457470" level="INFO">Typing text 'Yulius' into text field 'id=lastName'.</msg>
-<arg>id=lastName</arg>
-<arg>${last}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-08T11:53:27.456081" elapsed="0.727436"/>
+<msg time="2026-01-26T10:30:12.758576" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
+<msg time="2026-01-26T10:30:12.758894" level="FAIL">No application is open</msg>
+<doc>Closes the current application and the webdriver session.</doc>
+<status status="FAIL" start="2026-01-26T10:30:12.755037" elapsed="0.004782">No application is open</status>
 </kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:28.184936" level="INFO">Typing text 'frndakaryn@gmail.com' into text field 'id=userEmail'.</msg>
-<arg>id=userEmail</arg>
-<arg>${email}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-08T11:53:28.184206" elapsed="0.750202"/>
-</kw>
-<arg>Karyn</arg>
-<arg>Yulius</arg>
-<arg>frndakaryn@gmail.com</arg>
-<status status="PASS" start="2026-01-08T11:53:26.344452" elapsed="2.590622"/>
-</kw>
-<kw name="Select Gender and Mobile">
-<kw name="Execute Javascript" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:28.940007" level="INFO">Executing JavaScript:
-window.scrollTo(0, 400)
-Without any arguments.</msg>
-<arg>window.scrollTo(0, 400)</arg>
-<doc>Executes the given JavaScript code with possible arguments.</doc>
-<status status="PASS" start="2026-01-08T11:53:28.938475" elapsed="0.216707"/>
-</kw>
-<kw name="Execute Javascript" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:29.163830" level="INFO">Executing JavaScript:
-document.querySelector("label[for='gender-radio-2']").click()
-Without any arguments.</msg>
-<arg>document.querySelector("label[for='gender-radio-2']").click()</arg>
-<doc>Executes the given JavaScript code with possible arguments.</doc>
-<status status="PASS" start="2026-01-08T11:53:29.159805" elapsed="0.236080"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:29.397908" level="INFO">Typing text '1234567890' into text field 'id=userNumber'.</msg>
-<arg>id=userNumber</arg>
-<arg>${phone}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-08T11:53:29.396967" elapsed="0.787663"/>
-</kw>
-<arg>1234567890</arg>
-<status status="PASS" start="2026-01-08T11:53:28.936471" elapsed="1.248702"/>
-</kw>
-<kw name="Choose Location">
-<kw name="Execute Javascript" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:30.189201" level="INFO">Executing JavaScript:
-window.scrollTo(0, 800)
-Without any arguments.</msg>
-<arg>window.scrollTo(0, 800)</arg>
-<doc>Executes the given JavaScript code with possible arguments.</doc>
-<status status="PASS" start="2026-01-08T11:53:30.187981" elapsed="0.214079"/>
-</kw>
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:30.405110" level="INFO">Clicking element 'id=state'.</msg>
-<arg>id=state</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-08T11:53:30.403645" elapsed="0.513837"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:30.920538" level="INFO">Typing text 'NCR' into text field 'id=react-select-3-input'.</msg>
-<arg>id=react-select-3-input</arg>
-<arg>${state}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-08T11:53:30.919533" elapsed="0.693172"/>
-</kw>
-<kw name="Press Keys" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:31.615164" level="INFO">Sending key(s) ('ENTER',) to id=react-select-3-input element.</msg>
-<msg time="2026-01-08T11:53:32.306483" level="INFO">Pressing special key ENTER to element.</msg>
-<msg time="2026-01-08T11:53:32.307559" level="INFO">Releasing special key ENTER.</msg>
-<arg>id=react-select-3-input</arg>
-<arg>ENTER</arg>
-<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<status status="PASS" start="2026-01-08T11:53:31.613810" elapsed="0.917950"/>
-</kw>
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:32.533252" level="INFO">Clicking element 'id=city'.</msg>
-<arg>id=city</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-08T11:53:32.532607" elapsed="0.482720"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:33.022005" level="INFO">Typing text 'Delhi' into text field 'id=react-select-4-input'.</msg>
-<arg>id=react-select-4-input</arg>
-<arg>${city}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-08T11:53:33.017998" elapsed="0.702178"/>
-</kw>
-<kw name="Press Keys" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:33.721926" level="INFO">Sending key(s) ('ENTER',) to id=react-select-4-input element.</msg>
-<msg time="2026-01-08T11:53:34.406723" level="INFO">Pressing special key ENTER to element.</msg>
-<msg time="2026-01-08T11:53:34.407326" level="INFO">Releasing special key ENTER.</msg>
-<arg>id=react-select-4-input</arg>
-<arg>ENTER</arg>
-<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<status status="PASS" start="2026-01-08T11:53:33.721064" elapsed="0.915411"/>
-</kw>
-<arg>NCR</arg>
-<arg>Delhi</arg>
-<status status="PASS" start="2026-01-08T11:53:30.186509" elapsed="4.450502"/>
-</kw>
-<kw name="Submit Form and Verify">
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2026-01-08T11:53:35.111606" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="final_check.png"&gt;&lt;img src="final_check.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>final_check.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2026-01-08T11:53:34.640597" elapsed="0.473435"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Test Complete!</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2026-01-08T11:53:35.116456" elapsed="0.002382"/>
-</kw>
-<status status="PASS" start="2026-01-08T11:53:34.638121" elapsed="0.481563"/>
-</kw>
-<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
-<doc>Closes the current browser.</doc>
-<status status="PASS" start="2026-01-08T11:53:35.122445" elapsed="0.599829"/>
-</kw>
-<doc>Verifies a user can fill the form and select state/city.</doc>
-<status status="PASS" start="2026-01-08T11:53:14.852248" elapsed="20.871320"/>
+<status status="FAIL" start="2026-01-26T10:28:22.154895" elapsed="110.605090">Setup failed:
+ProtocolError: ('Connection broken: IncompleteRead(26 bytes read)', IncompleteRead(26 bytes read))
+
+Also teardown failed:
+No application is open</status>
 </test>
-<status status="PASS" start="2026-01-08T11:53:13.578664" elapsed="22.152686"/>
-</suite>
-<status status="PASS" start="2026-01-08T11:53:13.571386" elapsed="22.172062"/>
-</suite>
-<status status="PASS" start="2026-01-08T11:53:13.361110" elapsed="22.387355"/>
+<status status="FAIL" start="2026-01-26T10:28:18.993201" elapsed="113.768223"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Learning Robot Framework" id="s1" pass="1" fail="0" skip="0">Learning Robot Framework</stat>
-<stat name="Tests" id="s1-s1" pass="1" fail="0" skip="0">Learning Robot Framework.Tests</stat>
-<stat name="Google Test" id="s1-s1-s1" pass="1" fail="0" skip="0">Learning Robot Framework.Tests.Google Test</stat>
+<stat name="Fresh-Test" id="s1" pass="0" fail="1" skip="0">Fresh-Test</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2026-01-26T10:30:12.745308" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
+<msg time="2026-01-26T10:30:12.758576" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
 </errors>
 </robot>

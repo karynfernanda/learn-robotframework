@@ -38,3 +38,23 @@ Launch And Login Flow
     Input Text                          com.setel.mobile.staging2:id/edit_pin    111111
     
     [Teardown]    Close Application
+
+*** Keywords ***
+Launch Setel App
+    &{bstack_options}=    Create Dictionary
+    ...    projectName=Setel New Start
+    ...    buildName=Fresh-Scratch-Build
+    ...    appiumVersion=2.4.1
+    ...    interactiveDebugging=${True}
+
+    Open Application    ${REMOTE_URL}
+    ...    automationName=UiAutomator2
+    ...    platformName=Android
+    ...    deviceName=Samsung Galaxy S23
+    ...    platformVersion=13.0
+    ...    app=${APP_ID}
+    ...    appPackage=com.setel.mobile.staging2
+    ...    appActivity=com.zapmobile.zap.splash.SplashActivity
+    ...    autoGrantPermissions=true
+    ...    newCommandTimeout=600
+    ...    bstack:options=${bstack_options}

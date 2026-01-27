@@ -34,6 +34,7 @@ Launch And Login Flow
 
     Log To Console    \n* Step 5: Entering OTP...
     Wait Until Page Contains Element    com.setel.mobile.staging2:id/edit_pin    timeout=20s
+    Click Element                       com.setel.mobile.staging2:id/edit_pin
     Input Text                          com.setel.mobile.staging2:id/edit_pin    111111
     
     [Teardown]    Close Application

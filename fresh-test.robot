@@ -20,9 +20,9 @@ Launch And Login Flow
 
     Log To Console    \n* Step 2: Navigating to Profile...
     Sleep    10s
-    Wait Until Page Contains Element    xpath=//*[@text="Profile"]    timeout=30s
-    Click Element                       xpath=//*[@text="Profile"]
-
+    Wait Until Page Contains Element    xpath=//android.widget.TextView[@text="Account"]    timeout=30s
+    Click Element                       xpath=//android.widget.TextView[@text="Account"]
+    
     Log To Console    \n* Step 3: Clicking Get Started...
     Sleep    5s
     Wait Until Page Contains Element    xpath=//*[contains(@text, "GET STARTED")]    timeout=20s
@@ -31,7 +31,7 @@ Launch And Login Flow
     Log To Console    \n* Step 4: Inputting Phone Number...
     Sleep    5s
     Wait Until Page Contains Element    id=com.setel.mobile.staging2:id/edt_phone_number    timeout=20s
-    Input Text                          id=com.setel.mobile.staging2:id/edt_phone_number    0123456789
+    Input Text                          id=com.setel.mobile.staging2:id/edt_phone_number    166674000
     Click Element                       id=com.setel.mobile.staging2:id/btn_continue
 
     [Teardown]    Close Application

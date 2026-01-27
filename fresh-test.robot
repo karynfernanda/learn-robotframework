@@ -37,7 +37,7 @@ Launch And Login Flow
     Click Element                       com.setel.mobile.staging2:id/edit_pin
     Input Text                          com.setel.mobile.staging2:id/edit_pin    111111
     
-    [Teardown]    Close Application
+    [Teardown]    Run Keywords    Update BrowserStack Status    ${TEST_STATUS}    ${TEST_MESSAGE}    AND    Close Application
 
 *** Keywords ***
 Launch Setel App
@@ -58,3 +58,7 @@ Launch Setel App
     ...    autoGrantPermissions=true
     ...    newCommandTimeout=600
     ...    bstack:options=${bstack_options}
+
+Update BrowserStack Status
+    [Arguments]    ${status}    ${reason}
+    Execute Script    browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"${status}", "reason": "${reason}"}}

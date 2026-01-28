@@ -61,4 +61,5 @@ Launch Setel App
 
 Update BrowserStack Status
     [Arguments]    ${status}    ${reason}
-    Execute Script    browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"${status}", "reason": "${reason}"}}
+    ${bs_status}=    Set Variable If    '${status}'=='PASS'    passed    failed
+    Execute Script    browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"${bs_status}", "reason": "${reason}"}}

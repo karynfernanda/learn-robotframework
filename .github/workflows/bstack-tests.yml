@@ -26,4 +26,4 @@ jobs:
           BS_USER: ${{ secrets.BROWSERSTACK_USERNAME }}
           BS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         run: |
-          robot fresh-test.robot
+          robot --variable PLATFORM:iOS tests/fresh-test.robot

@@ -15,14 +15,16 @@ Launch And Login Flow
     [Setup]    Launch Setel App
     Register Keyword To Run On Failure    Nothing
 
-    Log To Console    \n* Step 1: Selecting Language...
-    Sleep    10s
-    ${lang_loc}=    Set Variable If    '${PLATFORM}'=='Android'    xpath=//*[contains(@text, "English")]    accessibility_id=English
-    Wait Until Page Contains Element    ${lang_loc}    timeout=30s
-    Click Element                       ${lang_loc}
+    IF    '${PLATFORM}' == 'Android'
+        Log To Console    \n* Step 1: Selecting Language (Android Only)...
+        Wait Until Page Contains Element    xpath=//*[contains(@text, "English")]    timeout=30s
+        Click Element                       xpath=//*[contains(@text, "English")]
+    ELSE
+        Log To Console    \n* Step 1: Skipping Language Selection (iOS Direct to Dashboard)...
+        Sleep    10s
+    END
 
     Log To Console    \n* Step 2: Navigating to Account...
-    Sleep    10s
     ${acc_loc}=     Set Variable If    '${PLATFORM}'=='Android'    xpath=//android.widget.TextView[@text="Account"]    xpath=//XCUIElementTypeTabBar/XCUIElementTypeButton[5]
     Wait Until Page Contains Element    ${acc_loc}     timeout=30s
     Click Element                       ${acc_loc}

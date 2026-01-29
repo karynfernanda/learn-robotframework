@@ -62,13 +62,19 @@ Launch Setel App
         ...    platformName=Android
         ...    deviceName=Samsung Galaxy S23
         ...    app=${APP_ID_ANDROID}
+        ...    appPackage=com.setel.mobile.staging2
+        ...    appActivity=com.zapmobile.zap.splash.SplashActivity
         ...    bstack:options=${bstack_options}
     ELSE
+        # UNTUK iOS: Pastiin bundleId nya bener!
         Open Application    ${REMOTE_URL}
         ...    automationName=XCUITest
         ...    platformName=iOS
         ...    deviceName=iPhone 14
         ...    app=${APP_ID_IOS}
+        ...    bundleId=com.setel-staging2.ios
+        ...    includeSafariInWebviews=${True}
+        ...    newCommandTimeout=300
         ...    bstack:options=${bstack_options}
     END
 

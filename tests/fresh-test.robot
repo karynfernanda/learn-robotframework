@@ -16,6 +16,7 @@ Launch And Login Flow
     Register Keyword To Run On Failure    Nothing
 
     Log To Console    \n* Step 1: Selecting Language...
+    Sleep    10s
     ${lang_loc}=    Set Variable If    '${PLATFORM}'=='Android'    xpath=//*[contains(@text, "English")]    accessibility_id=English
     Wait Until Page Contains Element    ${lang_loc}    timeout=30s
     Click Element                       ${lang_loc}
@@ -66,14 +67,14 @@ Launch Setel App
         ...    appActivity=com.zapmobile.zap.splash.SplashActivity
         ...    bstack:options=${bstack_options}
     ELSE
-        # UNTUK iOS: Pastiin bundleId nya bener!
         Open Application    ${REMOTE_URL}
         ...    automationName=XCUITest
         ...    platformName=iOS
         ...    deviceName=iPhone 14
         ...    app=${APP_ID_IOS}
         ...    bundleId=com.setel-staging2.ios
-        ...    includeSafariInWebviews=${True}
+        ...    autoAcceptAlerts=${True}
+        ...    autoGrantPermissions=${True}   
         ...    newCommandTimeout=300
         ...    bstack:options=${bstack_options}
     END

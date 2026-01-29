@@ -22,7 +22,7 @@ Launch And Login Flow
 
     Log To Console    \n* Step 2: Navigating to Account...
     Sleep    10s
-    ${acc_loc}=     Set Variable If    '${PLATFORM}'=='Android'    xpath=//android.widget.TextView[@text="Account"]    accessibility_id=Account
+    ${acc_loc}=     Set Variable If    '${PLATFORM}'=='Android'    xpath=//android.widget.TextView[@text="Account"]    xpath=//XCUIElementTypeTabBar/XCUIElementTypeButton[5]
     Wait Until Page Contains Element    ${acc_loc}     timeout=30s
     Click Element                       ${acc_loc}
 

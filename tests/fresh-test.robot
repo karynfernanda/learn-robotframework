@@ -8,7 +8,7 @@ ${BS_USER}          %{BS_USER=karynfernandayul_8bntM9}
 ${BS_KEY}           %{BS_KEY=Ne74yKsqR3xTMreuzzzg}
 ${REMOTE_URL}       http://${BS_USER}:${BS_KEY}@hub-cloud.browserstack.com/wd/hub
 ${APP_ID_ANDROID}   bs://4dca04fdd2d0ade664e45c5a4239165b84a117c6
-${APP_ID_IOS}       bs://59f8b3460635f25664691b8afd2be7f8f46511d5
+${APP_ID_IOS}       bs://7ecc0dddfbe9999223bb585e9aed32140eb16fe3
 
 *** Test Cases ***
 Launch And Login Flow

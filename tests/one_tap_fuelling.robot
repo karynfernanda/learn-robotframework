@@ -2,6 +2,8 @@
 Documentation     Epic: Fuel One tab Fuelling | Feature: OneTabFuelling
 ...               This suite handles the One-Tap Fuelling flow for both Android and iOS.
 Library           AppiumLibrary
+Resource          ${CURDIR}/../resources/common_keywords.resource
+Resource          ${CURDIR}/../resources/locators.resource
 
 *** Variables ***
 # Default platform is Android, can be overridden via CLI (e.g., --variable PLATFORM:iOS)

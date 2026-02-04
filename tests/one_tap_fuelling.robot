@@ -18,29 +18,23 @@ FL_2135 Unsuccessful Place Order Wallet Balance < RM3
     [Tags]             regression    fuel    one-tap-fuelling    FL-2135    reg_178
     [Setup]            Launch Setel App
 
-    # Step 1: Handle Language Selection (Android only)
+    # Language Selection for Android, Skip for iOS)
     IF    '${PLATFORM}' == 'Android'
         Log To Console    * Step 1: Selecting English Language (Android only)
-        Wait Until Page Contains Element    xpath=//*[contains(@text, "English")]    timeout=30s
-        Click Element                       xpath=//*[contains(@text, "English")]
+        Wait Until Page Contains Element    ${LANG_ENG_ANDROID}    timeout=30s
+        Click Element                       ${LANG_ENG_ANDROID}
     ELSE
-        Log To Console    * Step 1: Skipping Language Selection (iOS goes straight to Dashboard)
-        Sleep    10s    # Give time for autoAcceptAlerts to handle system pop-ups
+        Log To Console    * Step 1: iOS Direct to Dashboard (Wait for Alerts)
+        Sleep    10s
     END
 
-    # Step 2: Navigate to Account/Profile page
     Log To Console    * Step 2: Navigating to Account page
-    ${acc_loc}=     Set Variable If    '${PLATFORM}'=='Android'
-    ...    xpath=//android.widget.TextView[@text="Account"]
-    ...    xpath=//XCUIElementTypeTabBar/XCUIElementTypeButton[5]
+    ${acc_loc}=     Set Variable If    '${PLATFORM}'=='Android'    ${ACC_BTN_ANDROID}    ${ACC_BTN_IOS}
     Wait Until Page Contains Element    ${acc_loc}     timeout=30s
     Click Element                       ${acc_loc}
 
-    # Step 3: Click 'Get Started' button
     Log To Console    * Step 3: Clicking Get Started
-    ${start_loc}=   Set Variable If    '${PLATFORM}'=='Android'
-    ...    xpath=//*[contains(@text, "GET STARTED")]
-    ...    accessibility_id=GET STARTED
+    ${start_loc}=   Set Variable If    '${PLATFORM}'=='Android'    ${GET_STARTED_ANDROID}    ${GET_STARTED_IOS}
     Wait Until Page Contains Element    ${start_loc}    timeout=20s
     Click Element                       ${start_loc}
 
@@ -51,33 +45,30 @@ FL_2174 One Tap Fuelling Card Expired
     [Tags]             one-tap-fuelling    FL-2174    disabled
     Log To Console     This test is currently disabled/skipped to match Java setup.
 
-*** Keywords ***
-Launch Setel App
-    &{bstack_options}=    Create Dictionary
-    ...    projectName=Setel One-Tap Fuelling
-    ...    buildName=Build-${PLATFORM}-Parallel
-    ...    appiumVersion=2.4.1
+FL_2178 One-Tap Fuelling Kicked Out From Family Wallet
+    [Documentation]    Verify system behavior when user is removed from Family Wallet
+    [Tags]             regression    one-tap-fuelling    fuel    FL-2178
+    [Setup]            Launch Setel App
 
-    IF    '${PLATFORM}' == 'Android'
-        Open Application    ${REMOTE_URL}
-        ...    automationName=UiAutomator2
-        ...    platformName=Android
-        ...    deviceName=Samsung Galaxy S23
-        ...    app=${APP_ID_ANDROID}
-        ...    bstack:options=${bstack_options}
-    ELSE
-        Open Application    ${REMOTE_URL}
-        ...    automationName=XCUITest
-        ...    platformName=iOS
-        ...    deviceName=iPhone 14
-        ...    app=${APP_ID_IOS}
-        ...    bundleId=com.setel-staging2.ios
-        ...    autoAcceptAlerts=${True}      # Automatically click 'Allow' on iOS pop-ups
-        ...    autoGrantPermissions=${True}   # Grant location/notif permissions
-        ...    bstack:options=${bstack_options}
-    END
+    Log To Console     * Step 1: Checking Family Wallet status...
+    # Use dynamic locator from resources
+    ${wallet}=         Set Variable If    '${PLATFORM}'=='Android'    ${FAMILY_WALLET_ANDROID}    ${FAMILY_WALLET_IOS}
+    Wait Until Page Contains Element    ${wallet}    timeout=30s
 
-Update BrowserStack Status
-    [Arguments]    ${status}    ${reason}
-    ${bs_status}=    Set Variable If    '${status}'=='PASS'    passed    failed
-    Execute Script    browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"${bs_status}", "reason": "${reason}"}}
+    [Teardown]         Run Keywords    Update BrowserStack Status    ${TEST_STATUS}    ${TEST_MESSAGE}    AND    Close Application
+
+FL_3893 Set Full Tank Limit Amount
+    [Documentation]    Verify setting full tank limit for One-Tap Fuelling
+    [Tags]             regression    fuel    one-tap-fuelling    FL-3893
+    [Setup]            Launch Setel App
+
+    Log To Console     * Step 1: Navigating to OTF Settings to set Full Tank...
+    # Only enable if currently disabled
+    Enable OTF Toggle If Disabled
+
+    # Select Full Tank button
+    ${full_tank}=      Set Variable If    '${PLATFORM}'=='Android'    ${OTF_FULL_TANK_BTN_ANDROID}    ${OTF_FULL_TANK_BTN_IOS}
+    Wait Until Page Contains Element    ${full_tank}    timeout=20s
+    Click Element                       ${full_tank}
+
+    [Teardown]         Run Keywords    Update BrowserStack Status    ${TEST_STATUS}    ${TEST_MESSAGE}    AND    Close Application

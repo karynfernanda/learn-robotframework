@@ -1,6 +1,6 @@
 *** Settings ***
-Library    AppiumLibrary
-Resource   locators.resource
+Documentation     Global keywords shared across all test suites
+Library           AppiumLibrary
 
 *** Keywords ***
 Launch Setel App
@@ -28,22 +28,12 @@ Launch Setel App
         ...    bstack:options=${bstack_options}
     END
 
-Enable OTF Toggle If Disabled
-    ${toggle}=    Set Variable If    '${PLATFORM}'=='Android'    ${OTF_SWITCH_ANDROID}    ${OTF_SWITCH_IOS}
-    Wait Until Page Contains Element    ${toggle}    timeout=20s
-
-    IF    '${PLATFORM}' == 'Android'
-        ${status}=    Get Element Attribute    ${toggle}    checked
-        # Click only if it's currently false
-        IF    '${status}' == 'false'    Click Element    ${toggle}
-    ELSE
-        ${status}=    Get Element Attribute    ${toggle}    value
-        # In iOS, value 0 means disabled
-        IF    '${status}' == '0'        Click Element    ${toggle}
-    END
-
 Update BrowserStack Status
-    [Documentation]    Updates the test result status in the BrowserStack dashboard.
     [Arguments]    ${status}    ${reason}
+    [Documentation]    Corrected JSON format for BrowserStack executor
     ${bs_status}=    Set Variable If    '${status}'=='PASS'    passed    failed
     Execute Script    browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"${bs_status}", "reason": "${reason}"}}
+
+Close Setel App
+    [Documentation]    Closes the current application
+    Close Application

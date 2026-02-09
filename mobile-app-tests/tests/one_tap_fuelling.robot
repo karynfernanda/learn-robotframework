@@ -47,4 +47,13 @@ FL_3893 Set Full Tank Limit Amount
     Enable OTF Toggle If Disabled
     Select Full Tank Option
     Click Element                    ${SAVE_BTN_ANDROID}
-    [Teardown]         Run Keywords    Update BrowserStack Status    ${TEST_STATUS}    ${TEST_
+    [Teardown]         Run Keywords    Update BrowserStack Status    ${TEST_STATUS}    ${TEST_MESSAGE}    AND    Close Setel App
+
+FL_9999 Negative Test Login with Invalid PIN
+    [Documentation]    Verify behavior when entering an incorrect PIN
+    [Tags]             negative    regression    FL-9999
+    [Setup]            Launch Setel App
+    # Step: Enter valid phone but WRONG PIN
+    New Login To Setel App    ${USER_PHONE}    999999
+    Wait Until Page Contains    Incorrect PIN    timeout=15s
+    [Teardown]         Run Keywords    Update BrowserStack Status    ${TEST_STATUS}    ${TEST_MESSAGE}    AND    Close Setel App
